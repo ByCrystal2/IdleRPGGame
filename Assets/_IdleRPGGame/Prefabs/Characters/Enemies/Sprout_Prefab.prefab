@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 27cec77cd5d2e2941925305bf2a38ff3, type: 2}
     - target: {fileID: 919132149155446097, guid: ea1fb20a8f717b74da81d851aeea0d50, type: 3}
       propertyPath: m_Name
-      value: Sprout
+      value: Sprout_Prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
