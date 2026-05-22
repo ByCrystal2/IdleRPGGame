@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.kosippy.project-structure-organizer": {
+      "version": "file:D:/CsharpSeruveni/Unity/_UnityPackages-main/ProjectStructureOrganizer",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.9",
       "depth": 0,
