@@ -1,7 +1,9 @@
 using AYellowpaper.SerializedCollections;
 using TMPro;
 using UnityEngine;
-
+using DG.Tweening;
+using System.Collections.Generic;
+using System.Linq;
 public class EconomySubscribeSystem : MonoBehaviour
 {
     [SerializedDictionary("Subscribe Infos", "Subscribe Currency")]
@@ -27,6 +29,36 @@ public class EconomySubscribeSystem : MonoBehaviour
                     break;
             }
         }
+    }
+    public void VibrationSubscribedObjects(CurrencyType currencyType,Color textColor, float duration = 0.2f)
+    {
+        List<SubsSup> subsToVibrate = economySubscribes.Where(s => s.Value == currencyType).Select(s => s.Key).ToList();
+        foreach (var subscribe in subsToVibrate)
+        {           
+            switch (subscribe.SubsType)
+            {
+                case EconomySubscribeType.Price:
+                    TextMeshProUGUI text = subscribe.TargetObject.GetComponent<TextMeshProUGUI>();
+
+                    if (text != null)
+                    {
+                        
+                        Color originalColor = text.color;
+                        text.transform.DOKill();
+                        text.DOKill();
+
+
+                        text.DOColor(textColor, duration / 2)
+                            .OnComplete(() => text.DOColor(originalColor, duration / 2));
+                        text.transform.DOShakePosition(duration, strength: 10f, vibrato: 20, randomness: 90, fadeOut: true);
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        Handheld.Vibrate();
     }
     [System.Serializable]
     public class SubsSup

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UpgradeCatalog
   m_EditorClassIdentifier: Assembly-CSharp::ProductCatalog
   allProducts:
-  - {fileID: 11400000, guid: ecd5c07817c75d74499c3904aa6648b5, type: 2}
-  - {fileID: 11400000, guid: 07a10b26cb8501a479e1fbf1cbe72591, type: 2}
-  - {fileID: 11400000, guid: a00caf1876fca2d48bf529c66a338042, type: 2}
-  - {fileID: 11400000, guid: 69ba88d3219a89b42bdf1b39195dd8aa, type: 2}
+  - {fileID: 11400000, guid: 46ea71e9d610b8f46ab2dd83ed450b77, type: 2}
+  - {fileID: 11400000, guid: c6cd16c174d954a40a1873b6f8a4e72a, type: 2}
+  - {fileID: 11400000, guid: 3b6c05483b287cc4fbff1c1f69b96bb3, type: 2}
+  - {fileID: 11400000, guid: e508a85c1e20a1748a7a7364c2836bef, type: 2}

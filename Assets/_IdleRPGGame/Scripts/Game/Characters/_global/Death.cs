@@ -2,15 +2,9 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Die()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Olme animasyonu tetikleme ve objeyi yok etme kodlari
+        Destroy(gameObject);
     }
 }

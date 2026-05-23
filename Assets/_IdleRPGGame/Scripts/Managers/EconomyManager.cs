@@ -69,6 +69,7 @@ public class EconomyManager : PersistentSinleton<EconomyManager>
         bool success = ChangeBalance(currencyName, -data.price);
         if (!success)
         {
+            economySubscribeSystem.VibrationSubscribedObjects(data.currency, Color.red);
             return (false, "Insufficient balance!");
         }
         // Satin alma kaydi ve etki
@@ -109,16 +110,29 @@ public class EconomyManager : PersistentSinleton<EconomyManager>
         if (newAmount < 0) return false;  // Yetersiz bakiye
         balances[currencyName] = newAmount;
         //UI and other processes
+        GameManager.Instance.SaveGame();
         return true;
     }
-
-    /// <summary>
-    /// Baslangic bakiyelerini yukler.
-    /// </summary>
-    void LoadStartingBalances()
+    public void AddGold(int amount)
     {
-        foreach (var def in currencyDefinitions)
-            balances[def.currencyName] = def.startingAmount;
+        ChangeBalance("Gold", amount); // DIKKAT! SADECE TEST ICINDIR!
+    }
+
+        /// <summary>
+        /// Baslangic bakiyelerini yukler.
+        /// </summary>
+        void LoadStartingBalances()
+    {
+        //List<int> currencies = new List<int>();
+        //int gold = PlayerPrefs.GetInt("Gold", 100);
+        //int gem = PlayerPrefs.GetInt("Gem", 10);
+        //currencies.Add(gold);
+        //currencies.Add(gem);
+        for (int i = 0; i < currencyDefinitions.Count; i++)
+        {
+            CurrencyData currentCurrency = currencyDefinitions[i];
+            balances[currentCurrency.currency.ToString()] = PlayerPrefs.GetInt(currentCurrency.currency.ToString(), currentCurrency.startingAmount);
+        } 
     }
     public List<ProductData> GetProducts(ProductCategory category, CurrencyType currencyType)
     {
@@ -146,3 +160,5 @@ public enum PurchaseType
     NonConsumable,   // Bir kereye mahsus satin alinir 
     Limited          // Belirli sayida satin alinabilir 
 }
+public enum UpgradeType { HouseUpgrade, CharacterUpgrade, OtherUpgrade }
+public enum CharacterUpgradeType { None, AttackDamage, Health, AttackSpeed,  MoveSpeed}

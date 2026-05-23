@@ -9,15 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff6e5ae197208745b7ff9552fc43293, type: 3}
+  m_Script: {fileID: 11500000, guid: 75218b44e6f7b7d4a9907694ef2ca8b4, type: 3}
   m_Name: AttackDamage1
-  m_EditorClassIdentifier: Assembly-CSharp::ProductData
-  displayName: Attack Damage +10
-  description: Increases your attack power by 10.
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeProductData
+  displayName: Attack Damage
+  description: Increases attack power.
   icon: {fileID: 21300000, guid: b89c969c17cdda84aa37c96a4ab085c0, type: 3}
   productId: atkdmg_001
   currency: 0
-  price: 50
+  price: 75
   category: 0
-  purchaseType: 0
-  maxPurchaseCount: 1
+  purchaseType: 2
+  maxPurchaseCount: 10
+  numberofPurchases: 1
+  upgradeType: 1
+  characterUpgradeType: 1
+  increasingUpgradeValue: 3
+  currentUpgradeValue: 1
