@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using StarterAssets;
 public class PlayerStats : Stats
 {
     [Header("For Player")]
@@ -11,13 +11,13 @@ public class PlayerStats : Stats
     public int MaxLevel;
     public int level = 1;
     public Health health;
-
+    ThirdPersonController player;
     protected override void Awake()
     {
         base.Awake();
         // Maksimum ulaşılabilecek seviye dizinin son elemanının indeksidir
         MaxLevel = LevelUpStages.Length - 1;
-
+        player = GetComponent<ThirdPersonController>();
         // Oyun açıldığında kayıtlı verileri geri yükle
         level = PlayerPrefs.GetInt("Player_Level", 1);
         currentXP = PlayerPrefs.GetInt("Player_Exp", 0);
@@ -43,7 +43,7 @@ public class PlayerStats : Stats
                 _ => default
             };
         }
-
+        player.MoveSpeed = moveSpeed;
         // Sahne başında arayüzün güncellenmesi için 0 EXP vererek tetikliyoruz
         GainXP(0);
     }
@@ -65,7 +65,7 @@ public class PlayerStats : Stats
                 _ => default
             };
         }
-
+        player.MoveSpeed = moveSpeed;
         Debug.Log($"Player Stats Updated: AttackDamage: {attackDamage}, AttackSpeed: {attackSpeed}, Health: {health.GetMaxHealth()}, MoveSpeed: {moveSpeed}");
     }
 
