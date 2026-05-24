@@ -1,12 +1,14 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Death))]
 public class Health : MonoBehaviour
 {
     [Header("Can Ayarları")]
     [SerializeField] private float maxHealth = 50f;
     public float currentHealth { get; private set; }
-    Death death;
-    private void Awake()
+    [HideInInspector]
+    public Death death;
+    protected virtual void Awake()
     {
         death = GetComponent<Death>();
         currentHealth = maxHealth;
@@ -22,7 +24,8 @@ public class Health : MonoBehaviour
             return;
         }
         currentHealth -= damage;
-        EventBus<Health>.Publish(EventType.UpgradeCharacter, this); // Can degisikliklerini dinleyen eventlere guncel can bilgisini gonderiyoruz
+        
+        Debug.Log($"{gameObject.name} adli obje {damage} kadar hasar aldi!");
     }
     // Can yenileme fonksiyonu
     public virtual void Heal(float healAmount)

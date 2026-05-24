@@ -30,7 +30,7 @@ public class EconomySubscribeSystem : MonoBehaviour
             }
         }
     }
-    public void VibrationSubscribedObjects(CurrencyType currencyType,Color textColor, float duration = 0.2f)
+    public void VibrationSubscribedObjects(CurrencyType currencyType,Color textColor, float duration = 0.2f, bool vibrate = false)
     {
         List<SubsSup> subsToVibrate = economySubscribes.Where(s => s.Value == currencyType).Select(s => s.Key).ToList();
         foreach (var subscribe in subsToVibrate)
@@ -58,6 +58,7 @@ public class EconomySubscribeSystem : MonoBehaviour
                     break;
             }
         }
+        if(vibrate)
         Handheld.Vibrate();
     }
     [System.Serializable]

@@ -56,8 +56,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MushroomEnemy_Prefab
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5866666021909216657, guid: ff54d4bf1cbe20f48b48ac6fccd17ba6, type: 3}
+    - target: {fileID: 5866666021909216657, guid: ff54d4bf1cbe20f48b48ac6fccd17ba6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4d113db91e01f5e4eb2d36fec40df505, type: 2}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -17,12 +17,12 @@ MonoBehaviour:
   icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   productId: movespd_001
   currency: 0
-  price: 30
+  price: 1012
   category: 0
   purchaseType: 2
-  maxPurchaseCount: 10
+  maxPurchaseCount: 4
   numberofPurchases: 1
   upgradeType: 1
   characterUpgradeType: 4
   increasingUpgradeValue: 1
-  currentUpgradeValue: 2
+  currentUpgradeValue: 3

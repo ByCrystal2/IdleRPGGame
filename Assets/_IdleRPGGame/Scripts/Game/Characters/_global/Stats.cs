@@ -11,8 +11,9 @@ public class Stats : MonoBehaviour
     [Tooltip("Eger karakter saldirmayacaksa (Sadece kacan dusmansa) bunu kapatabilirsiniz.")]
     public bool canAttack = true;
     public float attackDamage = 10f;
-    public float attackSpeed = 1f; // Saniyede kaç vuruş yapabileceği
-
+    public float attackSpeed = 1f; // Saniyede kac vurus yapabilecegini belirler
+    public int attackRange = 2; // Saldiri menzili
+    public float fireRate = 1f; // Saniyede kac ok atabilir
     protected virtual void Awake()
     {
 

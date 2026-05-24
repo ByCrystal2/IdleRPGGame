@@ -69,7 +69,7 @@ public class EconomyManager : PersistentSinleton<EconomyManager>
         bool success = ChangeBalance(currencyName, -data.price);
         if (!success)
         {
-            economySubscribeSystem.VibrationSubscribedObjects(data.currency, Color.red);
+            economySubscribeSystem.VibrationSubscribedObjects(data.currency, Color.red,0.2f,true);
             return (false, "Insufficient balance!");
         }
         // Satin alma kaydi ve etki
@@ -115,13 +115,16 @@ public class EconomyManager : PersistentSinleton<EconomyManager>
     }
     public void AddGold(int amount)
     {
-        ChangeBalance("Gold", amount); // DIKKAT! SADECE TEST ICINDIR!
+        if (amount < 0) return; // Negatif deger eklenemez
+        ChangeBalance("Gold", amount);
+        economySubscribeSystem.UpdateSubscribedObjectValues();
+        economySubscribeSystem.VibrationSubscribedObjects(CurrencyType.Gold, Color.green);
     }
 
-        /// <summary>
-        /// Baslangic bakiyelerini yukler.
-        /// </summary>
-        void LoadStartingBalances()
+    /// <summary>
+    /// Baslangic bakiyelerini yukler.
+    /// </summary>
+    void LoadStartingBalances()
     {
         //List<int> currencies = new List<int>();
         //int gold = PlayerPrefs.GetInt("Gold", 100);
@@ -130,8 +133,8 @@ public class EconomyManager : PersistentSinleton<EconomyManager>
         //currencies.Add(gem);
         for (int i = 0; i < currencyDefinitions.Count; i++)
         {
-            CurrencyData currentCurrency = currencyDefinitions[i];
-            balances[currentCurrency.currency.ToString()] = PlayerPrefs.GetInt(currentCurrency.currency.ToString(), currentCurrency.startingAmount);
+        CurrencyData currentCurrency = currencyDefinitions[i];
+        balances[currentCurrency.currency.ToString()] = PlayerPrefs.GetInt(currentCurrency.currency.ToString(), currentCurrency.startingAmount);
         } 
     }
     public List<ProductData> GetProducts(ProductCategory category, CurrencyType currencyType)

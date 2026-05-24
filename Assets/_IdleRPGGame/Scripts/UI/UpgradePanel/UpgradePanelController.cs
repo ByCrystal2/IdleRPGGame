@@ -28,8 +28,7 @@ public class UpgradePanelController : MonoBehaviour
     public void AddGoldForTesting() // Test amacli fonksiyon, 1000 altin ekler
     {
         EconomyManager.Instance.AddGold(1000);
-        EconomyManager.Instance.economySubscribeSystem.UpdateSubscribedObjectValues();
-        EconomyManager.Instance.economySubscribeSystem.VibrationSubscribedObjects(CurrencyType.Gold,Color.green);
+        
 
     }
     public void AddExpdForTesting(int _exp) // Test amacli fonksiyon, istediginiz kadar exp ekleyebilirsiniz
