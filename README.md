@@ -12,4 +12,6 @@ Steps to run the program:
 6-) We have three abilities with the bow. (Giant Arrow, Fire Arrow, Multi-Shot)
 Weapon used in the game: Bow
 
+Important Note: "The following assets will be provided to you for the prototype. Since the statement ‘Candidates are not expected to seek additional assets beyond these; the use of placeholder visuals is acceptable’ applies, I made every effort to avoid importing assets from external sources. The only asset I imported from an external source is Unity’s ‘Third Person Controller’ package. This was included for joystick control.
+
 Note:There were many things I wanted to add but couldn’t because the project timeline was too short. I couldn’t possibly list them all. In particular, I wasn’t able to do much in terms of game optimization, because developing the systems alone took up all my time. Visually, I used particle effects. If I’d had more time, my first priority would have been optimization and detailed visual eff
