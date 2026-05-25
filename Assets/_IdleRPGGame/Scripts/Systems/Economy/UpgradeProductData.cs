@@ -11,7 +11,7 @@ public class UpgradeProductData : ProductData
     public int GetIncreasingUpgradeValue() => increasingUpgradeValue;
     public UpgradeType GetUpgradeType() => upgradeType;
     public CharacterUpgradeType GetCharacterUpgradeType() => characterUpgradeType;
-    public void OnPurchase()
+    public override void OnPurchase()
     {
         currentUpgradeValue += increasingUpgradeValue;
         price += price / 2; // her satin alma sonrasi fiyat %50 artar // ayarlanabilir.

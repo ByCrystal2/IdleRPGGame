@@ -17,12 +17,12 @@ MonoBehaviour:
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   productId: hp_001
   currency: 0
-  price: 50
+  price: 70
   category: 0
   purchaseType: 0
   maxPurchaseCount: 10
   numberofPurchases: 1
   upgradeType: 1
   characterUpgradeType: 2
-  increasingUpgradeValue: 5
-  currentUpgradeValue: 1
+  increasingUpgradeValue: 20
+  currentUpgradeValue: 5

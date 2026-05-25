@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameManager : PersistentSinleton<GameManager>
 {
     PlayerStats playerStats;
-    protected virtual void Awake()
+    protected override void Awake()
     {
         base.Awake();
         playerStats = FindAnyObjectByType<PlayerStats>();

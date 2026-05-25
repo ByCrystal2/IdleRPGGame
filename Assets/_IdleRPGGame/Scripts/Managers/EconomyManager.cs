@@ -120,6 +120,7 @@ public class EconomyManager : PersistentSinleton<EconomyManager>
         economySubscribeSystem.UpdateSubscribedObjectValues();
         economySubscribeSystem.VibrationSubscribedObjects(CurrencyType.Gold, Color.green);
     }
+    
 
     /// <summary>
     /// Baslangic bakiyelerini yukler.

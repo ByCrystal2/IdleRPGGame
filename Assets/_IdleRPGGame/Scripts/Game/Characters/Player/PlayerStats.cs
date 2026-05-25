@@ -12,6 +12,7 @@ public class PlayerStats : Stats
     public int level = 1;
     public Health health;
     ThirdPersonController player;
+
     protected override void Awake()
     {
         base.Awake();
@@ -26,7 +27,7 @@ public class PlayerStats : Stats
     {
         UpdatePlayerStats();
     }
-
+    // Animasyon hýzýný güncelleyen yeni fonksiyonumuz
     public void UpdatePlayerStats()
     {
         List<UpgradeProductData> upgradeDatas = EconomyManager.Instance.GetProducts(ProductCategory.Upgrade, CurrencyType.Gold).OfType<UpgradeProductData>().ToList();
@@ -43,6 +44,7 @@ public class PlayerStats : Stats
             };
         }
         player.MoveSpeed = moveSpeed;
+        player.SprintSpeed = moveSpeed;
         // arayuz guncellensin diye 0 gonderiyoruz.
         GainXP(0);
     }
@@ -65,6 +67,7 @@ public class PlayerStats : Stats
             };
         }
         player.MoveSpeed = moveSpeed;
+        player.SprintSpeed = moveSpeed+0.5f;
         Debug.Log($"Player Stats Updated: AttackDamage: {attackDamage}, AttackSpeed: {attackSpeed}, Health: {health.GetMaxHealth()}, MoveSpeed: {moveSpeed}");
     }
 

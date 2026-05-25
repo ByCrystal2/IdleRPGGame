@@ -1024,6 +1024,7 @@ Transform:
   - {fileID: 6099177307643984962}
   - {fileID: 3383199142043611306}
   - {fileID: 103730723263875844}
+  - {fileID: 314498453007707738}
   m_Father: {fileID: 8847953755693401650}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3728568851327011627
@@ -1736,6 +1737,7 @@ GameObject:
   - component: {fileID: 6557479508175106846}
   - component: {fileID: 4267836472021697668}
   - component: {fileID: 1717194425063527452}
+  - component: {fileID: 3997502787770276288}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1782,9 +1784,7 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Armature'\n\tFrom animation clip 'Bow_Shoot'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -1932,7 +1932,17 @@ MonoBehaviour:
   LandingAudio: {fileID: 3201598200196545103}
   AudioFoley: {fileID: 625878686018471484}
   LandingAudioClip: {fileID: 0}
-  FootstepAudioClips: []
+  FootstepAudioClips:
+  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
+  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
+  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
+  - {fileID: 8300000, guid: 1a91fcd19acf1e54bba0945d9f390849, type: 3}
+  - {fileID: 8300000, guid: 14e8a8d2158bec840b56c54f5266e692, type: 3}
+  - {fileID: 8300000, guid: 29841e7d5bbfb5b419c9ad16ca8bc4c1, type: 3}
+  - {fileID: 8300000, guid: dd1af302b8902684d9381de1f2d3a5af, type: 3}
+  - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
+  - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
+  - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
   FootstepAudioVolume: 0.3
   JumpHeight: 1.2
   Gravity: -15
@@ -2000,10 +2010,14 @@ MonoBehaviour:
   stats: {fileID: 1717194425063527452}
   health: {fileID: 3020655550599407678}
   death: {fileID: 6303833861581465096}
+  skillHandler: {fileID: 3997502787770276288}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   activeBow: {fileID: 5597148586346524995}
+  baseAttackAnimationDuration: 1
+  attackSpeedScale: 0.05
+  weightBlendSpeed: 10
 --- !u!114 &1717194425063527452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2017,7 +2031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   characterName: New Player
-  moveSpeed: 5
+  moveSpeed: 2
   canAttack: 1
   attackDamage: 10
   attackSpeed: 1
@@ -2028,6 +2042,20 @@ MonoBehaviour:
   MaxLevel: 0
   level: 0
   health: {fileID: 3020655550599407678}
+--- !u!114 &3997502787770276288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794556025294734682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6190c4971edf9d14a9ca8b71144a9a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillHandler
+  multiShotDuration: 3
+  multiShotArrowDelay: 0.1
 --- !u!1 &5885921108093304366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,8 +2817,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 314498453007707738}
+  m_Children: []
   m_Father: {fileID: 1940391152902956872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9010402163657217833
@@ -2818,7 +2845,7 @@ Transform:
   m_GameObject: {fileID: 9010402163657217833}
   serializedVersion: 2
   m_LocalRotation: {x: -0.004298655, y: -0.14874575, z: -0.0037703994, w: 0.988859}
-  m_LocalPosition: {x: -0.775, y: 1.274, z: -0.066}
+  m_LocalPosition: {x: 0.307, y: 1.27, z: 0.679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2894,47 +2921,47 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3161616533347493422}
+    m_TransformParent: {fileID: 6997377355575289446}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2498
+      value: 0.023
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.985
+      value: 0.044
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0623
+      value: 0.024
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6514421
+      value: -0.66644394
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.3636427
+      value: 0.053915977
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.43004593
+      value: 0.054938756
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.50837755
+      value: -0.74157083
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 2.094
+      value: -180.551
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -68.537
+      value: 171.188
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -77.363
+      value: -83.93399
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: abfc4ad9cc9f6b949adbdb2a644a55e4, type: 3}
       propertyPath: m_Name
@@ -2979,4 +3006,3 @@ MonoBehaviour:
   maxPoolSize: 50
   arrowSpawnPoint: {fileID: 141734319287579684}
   attackRange: 4
-  fireRate: 1
