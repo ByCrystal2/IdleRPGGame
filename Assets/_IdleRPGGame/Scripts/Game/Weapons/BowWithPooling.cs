@@ -9,9 +9,8 @@ public class BowWithPooling : MonoBehaviour
     public int maxPoolSize = 50;
 
     [Header("Yay Teknik Ayarları")]
-    public Transform arrowSpawnPoint;   // Okun çıkış noktası
+    public Transform arrowSpawnPoint;   // Okun cikis noktasi
     public float attackRange = 10f;     // Menzil bilgisini Player buraya bakarak kontrol edebilir
-    public float fireRate = 1f;         // Saldırı hızı
 
     private IObjectPool<PooledArrow> arrowPool;
 
@@ -53,12 +52,13 @@ public class BowWithPooling : MonoBehaviour
     }
 
     // PlayerMotor scripti ile ateslendi!
-    public void Fire(Transform targetEnemy, float damage)
+    public void Fire(Transform targetEnemy, float damage, AttackEffectType effectType = AttackEffectType.None, int sizeMultiplier = -1)
     {
         PooledArrow arrow = arrowPool.Get();
         if (arrow != null)
         {
-            arrow.Launch(targetEnemy, damage);
+            if(sizeMultiplier > 0) arrow.transform.localScale *= sizeMultiplier;
+            arrow.Launch(targetEnemy, damage,effectType);
         }
     }
 }

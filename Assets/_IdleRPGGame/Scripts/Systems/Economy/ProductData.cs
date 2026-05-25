@@ -18,7 +18,7 @@ public class ProductData : ScriptableObject
     [SerializeField] int numberofPurchases = 1; // Urunu satin alma sayisi
 
     public int GetNumberOfPurchases() => numberofPurchases;
-    protected void OnPurchase()
+    public virtual void OnPurchase()
     {
         Debug.Log($"Product '{displayName}' purchased!");
         numberofPurchases++;

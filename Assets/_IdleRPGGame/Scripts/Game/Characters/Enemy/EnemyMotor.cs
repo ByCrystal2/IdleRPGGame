@@ -16,6 +16,7 @@ public class EnemyMotor : MonoBehaviour
     public float maxWaitTime = 4f;
 
     private Rigidbody rb;
+    Animator animator;
     [SerializeField] EnemyArea enemyArea;
 
     private Vector3 movementDirection;
@@ -27,6 +28,7 @@ public class EnemyMotor : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         stats = GetComponent<EnemyStats>();
 
         if (enemyArea == null)
@@ -48,10 +50,8 @@ public class EnemyMotor : MonoBehaviour
         if (stats.health.death.isDead) return;
 
 
-        // 1. Her zaman öncelikli olarak oyuncu yakınlık kontrolü yap
         CheckPlayerDistance();
 
-        // 2. Eğer oyuncudan KAÇMIYORSA normal devriye zamanlayıcısını çalıştır
         if (!isFleeing)
         {
             stateTimer -= Time.deltaTime;
@@ -60,12 +60,10 @@ public class EnemyMotor : MonoBehaviour
             {
                 if (isWaiting)
                 {
-                    // Bekleme süresi bittiyse yürümeye başla
                     StartWalking();
                 }
                 else
                 {
-                    // Yürüme süresi bittiyse dur ve beklemeye geç
                     StartWaiting();
                 }
             }
@@ -84,12 +82,10 @@ public class EnemyMotor : MonoBehaviour
     {
         isWaiting = false;
 
-        // Rastgele yön seç (X ve Z ekseninde)
         float randomX = Random.Range(-1f, 1f);
         float randomZ = Random.Range(-1f, 1f);
         movementDirection = new Vector3(randomX, 0, randomZ).normalized;
-
-        // Ne kadar süre yürüyeceğini ayarla
+        animator.SetBool("Walk", true);
         stateTimer = walkDuration;
     }
 
@@ -97,8 +93,7 @@ public class EnemyMotor : MonoBehaviour
     {
         isWaiting = true;
         movementDirection = Vector3.zero; // Hareketi kes
-
-        // Belirlediğin aralıkta rastgele bir bekleme süresi seç
+        animator.SetBool("Walk", false);
         stateTimer = Random.Range(minWaitTime, maxWaitTime);
     }
 
@@ -110,28 +105,24 @@ public class EnemyMotor : MonoBehaviour
 
         if (distanceToPlayer <= scareDistance)
         {
-            // Oyuncu yakınsa: Bekleme durumunu boz ve kaçış moduna geç
             isFleeing = true;
             isWaiting = false;
 
-            // Oyuncudan ters yöne doğru kaçış vektörü hesapla
             movementDirection = (transform.position - playerTransform.position).normalized;
             movementDirection.y = 0;
         }
         else
         {
-            // Oyuncu menzilden çıktıysa ve hala kaçma modundaysak normal devriyeye geri dön
             if (isFleeing)
             {
                 isFleeing = false;
-                StartWalking(); // Kaldığı yerden rastgele yürümeye başlasın
+                StartWalking();
             }
         }
     }
 
     void Move()
     {
-        // Eğer bekliyorsa hızı 0 yap, kaçıyorsa runSpeed, normal yürüyorsa moveSpeed
         float currentSpeed = 0f;
         if (!isWaiting)
         {
@@ -140,10 +131,8 @@ public class EnemyMotor : MonoBehaviour
 
         Vector3 targetVelocity = movementDirection * currentSpeed;
 
-        // Rigidbody hızını uygula (Y yerçekimi korunur)
         rb.linearVelocity = new Vector3(targetVelocity.x, rb.linearVelocity.y, targetVelocity.z);
 
-        // Eğer hareket ediyorsa ve yönü sıfır değilse o yöne baksın
         if (movementDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);

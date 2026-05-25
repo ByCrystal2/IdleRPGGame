@@ -17,12 +17,12 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b89c969c17cdda84aa37c96a4ab085c0, type: 3}
   productId: atkdmg_001
   currency: 0
-  price: 75
+  price: 50
   category: 0
   purchaseType: 2
   maxPurchaseCount: 10
   numberofPurchases: 1
   upgradeType: 1
   characterUpgradeType: 1
-  increasingUpgradeValue: 3
+  increasingUpgradeValue: 10
   currentUpgradeValue: 1
